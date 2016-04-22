@@ -1,0 +1,78 @@
+  <!DOCTYPE html>
+  <html class="no-js" lang="es" dir="ltr">
+    <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="css/foundation.css">
+      <link rel="stylesheet" href="css/app.css">
+      <script type="text/javascript">
+        function rannumber(){
+          return Math.random();
+        }
+
+        function textnull(){
+          var nombre = document.getElementById('nombre').value;
+          var apellido = document.getElementById('apellido').value;
+          var codigo = '';
+          if (nombre != '' && apellido !='') {
+            codigo = codegen(nombre,apellido);
+          } else {
+            window.alert('Por favor revise los datos ingresados');
+            codigo = 'Error al procesar'
+          }
+          document.getElementById('resultado').innerHTML = codigo;
+        }
+
+        function codegen(nombre, apellido) {
+          var n1 = rannumber();
+          var n2 = rannumber();
+          n1 = n1.toFixed(3)*1000;
+          n2 = n2.toFixed(3)*1000;
+          n1 = parseInt(n1);
+          n2 = parseInt(n2);
+          var subnombre = nombre.slice(0,1);
+          subnombre = subnombre.toUpperCase();
+          subnombre = subnombre + nombre.slice(1,2);
+          var apellen = apellido.length;
+          var subapellido = apellido.slice(apellen-2,apellen);
+          subapellido = subapellido.toLowerCase();
+          return n1+subnombre+subapellido+n2;
+        }
+      </script>
+    </head>
+    <body>
+      <form>
+        <div class="primary callout large-4 medium-4 columns">
+        <div class="row">
+          <div class="large-4 medium-4 columns">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" name="nombre">
+          </div>
+        </div>
+      </br>
+        <div class="row">
+          <div class="large-4 medium-4 columns">
+            <label for="apellido">Apellido</label>
+            <input id="apellido" name="apellido">
+          </div>
+        </div>
+        </br>
+        <div class="row">
+          <div class="large-4 medium-4 columns">
+            <h2><label id="resultado" name="resultado" class="success round label"></label></h2>
+          </div>
+        </div>
+        </br>
+        <div class="row">
+          <div class="large-6 medium-6 columns">
+            <button type="button" name="submit" class="button" onclick="textnull()">Obtener</button>
+            <button type="reset" name="reset" class="alert button">Limpiar</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script src="js/app.js"></script>
+    </body>
+  </html>
